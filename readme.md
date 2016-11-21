@@ -70,10 +70,10 @@ interface Person {
   * stór JS kóði á til að verða read-only, nema ef maður gerir unit test á allt sem er erfitt, því þegar maður breytir einhverju þá er svo erfitt að vita hvort eitthvað hafi brotnað.
   * þar sem TS hefur statískar týpu upplýsingar þá getur maður renamað symbol í einnig aðgerð yfir allan src kóðann
   * Hvernig fáum við týpur af 3party librarys
-    * Prófum að nota t.d. lodash
-    * npm i -S lodash
+    * Prófum að nota t.d. moment
+    * npm i -S moment
     * Týpur í TS2 er installað með npm. Var flóknara -> þurfti sérstök tól
-    * npm i -D @types/lodash
+    * npm i -D @types/moment
     * 
     ```javascript
       import * as _ from 'lodash';
@@ -82,8 +82,38 @@ interface Person {
         {fullName: 'joe', age: 45}
       ];
 
-      const results = _.filter(people, x => x.fullName == 'arnar');
+      const m = moment().startOf('day').fromNow();
       ```
+    * tökum eftir string literal type inní startOf methodunni
 ## Demo JS
 Það er hægt að njóta góðs af TS án þess að skipta yfir í TypeScript
-
+* cd ../js
+* bæta við jsdoc í person.js Ctrl+Alt+D x 2
+*
+  ```javascript
+    /**
+    * Constructs a person object
+    * @constructor
+    * @param {string} name
+    * @param {number} age
+    */
+    ...
+    var p = new Person('arnar', 29);
+  ```
+* Segjum svo að ég vilji nota jQuery hérna
+  * Ég skrifa $. og svo hvað. Höfum hingað til þurft að hafa skjölunina við hendina
+  * TS getur hjálpað okkur. Það er þegar búið að gera type definition skrár fyrir jQuery
+  * tsc --init
+  * "allowJs": true
+  * npm i -D @types/jquery
+  * $.ajax({method: 'GET', url: 'foobar'});
+  * npm i -D @types/lodash
+  * _.filter([1,2,3], x => x.)
+* Getum blandað sama JS og TS
+  * Bætum við utils.ts skrá
+  * Smíðum factory aðferðina makePerson
+  ```javascript
+  function makePerson() {
+    return new Person('arnar', 34);
+  }
+  ```
