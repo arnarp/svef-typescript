@@ -125,4 +125,13 @@ interface Person {
   * Förum í nullChecks&controlFlow folder
   * Sýnum countLines.ts
   * Kveikjum á StrictNullChecks "strictNullChecks": true
+  * Reload window
   * Skoðum villurnar
+  * Lögum 'Variable 'count' is used before being assigned.
+    * let count = 0; -> : number er óþarfi, tvítekning
+  * Lögum text -> Object is possible 'undefined'
+    * Wröppum func body í if(text)
+    * Fáum þá villu varðandi skilagildi 
+    * Setjum í staðinn if (!text) { return count }
+  * Lögum Type 'null' is not assignable to type 'string'
+    * (string | null)[]
