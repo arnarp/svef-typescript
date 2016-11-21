@@ -39,4 +39,51 @@ Munum á næstu árum fá uppfærðan ES specca á hverju ári en munum áfram �
 
 ## Demo ts
 * rename to .ts
+* add Person interface
+```javascript
+interface Person {
+  name: string;
+  age: number;
+}
+```
+* fix broken code
+* sýnum buildið
+  * tsc -w sortByName.ts
+  * sjáum að þýðandinn skilar fallegum kóða, aðeins búið að taka týpu upplýsingarnar út og breyta lambda segð í venjulegt function
+  * bætum við Greeter klasa 
+    ```javascript
+    class Greeter {
+      constructor(private name: string) {
+      }
+      sayHi() {
+        console.log(`Hello ${this.name}`);
+      }
+    }
+    ```
+  * getum líka þýtt kóðan yfir í ES2015
+    * smíðum stillingar skrá fyrir þýðandan tsconfig.json
+    * tsc --init
+    * breytum target í ES2015
+    * núna þurfum við ekki að tilgreina hvaða skrá við viljum þýða út af stillingar skránni
+    * tsc -w
+  * rename'um Person.name í fullName og sjáum viðeigandi kóða breytast með
+  * stór JS kóði á til að verða read-only, nema ef maður gerir unit test á allt sem er erfitt, því þegar maður breytir einhverju þá er svo erfitt að vita hvort eitthvað hafi brotnað.
+  * þar sem TS hefur statískar týpu upplýsingar þá getur maður renamað symbol í einnig aðgerð yfir allan src kóðann
+  * Hvernig fáum við týpur af 3party librarys
+    * Prófum að nota t.d. lodash
+    * npm i -S lodash
+    * Týpur í TS2 er installað með npm. Var flóknara -> þurfti sérstök tól
+    * npm i -D @types/lodash
+    * 
+    ```javascript
+      import * as _ from 'lodash';
+      const people: Person[] = [
+        {fullName: 'arnar', age: 29},
+        {fullName: 'joe', age: 45}
+      ];
+
+      const results = _.filter(people, x => x.fullName == 'arnar');
+      ```
+## Demo JS
+Það er hægt að njóta góðs af TS án þess að skipta yfir í TypeScript
 
