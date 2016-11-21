@@ -117,3 +117,12 @@ interface Person {
     return new Person('arnar', 34);
   }
   ```
+  ## Nullable týpur
+  Það er mikið til trafala að null og undefined sé assignable á allar týpur.
+  Oft er JS allur út í null/undefined tékkum.
+  Sennilega algengast villur í forritun almennt og í JS er vandamálið nánast tvöfalt verra því það eru tvær týpur fyrir null.
+  Í TS 2.0 kom frábær fídus StrictNullChecks
+  * Förum í nullChecks&controlFlow folder
+  * Sýnum countLines.ts
+  * Kveikjum á StrictNullChecks "strictNullChecks": true
+  * Skoðum villurnar
