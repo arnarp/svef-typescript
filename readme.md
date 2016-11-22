@@ -174,3 +174,11 @@ TS 2.0 kom með readonly property. Þau eru mjög gagnlegt t.a.m. í redux.
 * Förum í stars/reducer og breytum fyrsta case'inu
 * Förum í stars/state og breytum í readonly
 * Sjáum villuna
+
+# Resources
+* https://typescriptlang.org
+* https://blog.mariusschulz.com
+* https://github.com/Microsoft/TypeScript
+* https://github.com/Microsoft/TypeScript/wiki/What's-new-in-TypeScript
+* https://github.com/arnarp/vortigern
+* https://basarat.gitbooks.io/typescript/content/
