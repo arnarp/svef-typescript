@@ -13,7 +13,6 @@ export default class Shell extends React.Component<{}, {}> {
         <Helmet {...appConfig.app} {...appConfig.app.head} />
         <Header />
         {this.props.children}
-        <Footer appVersion={'v.1.0'} />
       </section>
     );
   }

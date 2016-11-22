@@ -1,10 +1,9 @@
 import * as React from 'react';
 
-export default (props: {appVersion: string}) => {
+export default (props: {version: string}) => {
   return (
     <div>
       Footer
-      v. {props.appVersion}
     </div>
   );
 };

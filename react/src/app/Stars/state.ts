@@ -1,7 +1,7 @@
 interface IStarsState {
-  readonly isFetching?: boolean;
-  readonly count?: number;
-  readonly error?: boolean;
-  readonly message?: any;
+  isFetching?: boolean;
+  count?: number;
+  error?: boolean;
+  message?: any;
 }
 export default IStarsState;

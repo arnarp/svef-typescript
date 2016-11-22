@@ -117,21 +117,60 @@ interface Person {
     return new Person('arnar', 34);
   }
   ```
-  ## Nullable týpur
-  Það er mikið til trafala að null og undefined sé assignable á allar týpur.
-  Oft er JS allur út í null/undefined tékkum.
-  Sennilega algengast villur í forritun almennt og í JS er vandamálið nánast tvöfalt verra því það eru tvær týpur fyrir null.
-  Í TS 2.0 kom frábær fídus StrictNullChecks
-  * Förum í nullChecks&controlFlow folder
-  * Sýnum countLines.ts
-  * Kveikjum á StrictNullChecks "strictNullChecks": true
-  * Reload window
-  * Skoðum villurnar
-  * Lögum 'Variable 'count' is used before being assigned.
-    * let count = 0; -> : number er óþarfi, tvítekning
-  * Lögum text -> Object is possible 'undefined'
-    * Wröppum func body í if(text)
-    * Fáum þá villu varðandi skilagildi 
-    * Setjum í staðinn if (!text) { return count }
-  * Lögum Type 'null' is not assignable to type 'string'
-    * (string | null)[]
+## Nullable týpur
+Það er mikið til trafala að null og undefined sé assignable á allar týpur.
+Oft er JS allur út í null/undefined tékkum.
+Sennilega algengast villur í forritun almennt og í JS er vandamálið nánast tvöfalt verra því það eru tvær týpur fyrir null.
+Í TS 2.0 kom frábær fídus StrictNullChecks
+* Förum í nullChecks&controlFlow folder
+* Sýnum countLines.ts
+* Kveikjum á StrictNullChecks "strictNullChecks": true
+* Reload window
+* Skoðum villurnar
+* Lögum 'Variable 'count' is used before being assigned.
+  * let count = 0; -> : number er óþarfi, tvítekning
+* Lögum text -> Object is possible 'undefined'
+  * Wröppum func body í if(text)
+  * Fáum þá villu varðandi skilagildi 
+  * Setjum í staðinn if (!text) { return count }
+* Lögum Type 'null' is not assignable to type 'string'
+  * (string | null)[]
+
+## Control Flow greining
+Skoðum test.ts
+Þar sem JavaScript hefur sína skemmtilegu jaðartilvik þá er TS þýðandinn svo hjálpsamur því það er búið að kenna honum á öll þessi jaðartilvik.
+
+## React
+TypeScript styður vel við vinsælustu framenda frameworkin Angular og React. Angular2 er skrifað í React og tala forritara Angular2 vel um TS.
+Þeir hafa sagt að þegar þeir færðu Angular2 verkefnið sitt yfir í TypeScript þá hafi þeir uppgötvað helling að villum. Einnig hafa þeir sagt að TS hafi gert þeim kleift að refactora verkefnið.
+TS styður React og Jsx málið. Í TS eru React hlutir skrifað í .tsx.
+### Dæmi
+* Skiptum yfir í react möppu
+* Skoðum footer.tsx
+* Hérna eru við með stateless function component
+* Bætum við {props.appVersion} til að sýna intellisense
+* Skoðum svo Shell/index.tsx
+* Hérna erum við með statefull class component
+* Getum sýnt hvernig props og state interfacein eru
+* Bætum við Footer <Footer />
+* Sjáum rauðu línuna. Prófum að compæla
+* Bætum við appVersion={'v.1.0'}
+* Opnum footer.tsx on the side
+* Rename'um appVersion og sjáum breytast báðum meginn, þ.e. allstaðar sem er vísað í þetta props
+### Tagged Union types
+Í TS 2.0 kom nýr fídust sem heitir Tagged Union Types. Hann er mjög ganglegur í að týpa redux reducera.
+#### Dæmi
+* Opnum stars/actions
+* Hérna erum við með þrjú action. Þessi þrjú action eru sameinuð í eina týpu IStarsAction.
+* Þessi action hafa aðgreinandi property'ið type. (Discriminant property) Þ.e. property sem skilur á milli undir týpana.
+* Skoðum nú reducerinn. Opnum stars/reducer
+* Sjáum error'inn ef við setjum stafs. villu inn í eitt case'ið
+* Sjáum intellisense hjálpina inn í case'i t.d. failure case'inu
+### Readonly props
+TS 2.0 kom með readonly property. Þau eru mjög gagnlegt t.a.m. í redux.
+Í redux má ekki breyta state objecti heldur þarf alltaf að smíða nýtt.
+#### Demo
+* Segjum að við gerum villu og breytum state í reducer.
+* Förum í stars/reducer og breytum fyrsta case'inu
+* Förum í stars/state og breytum í readonly
+* Sjáum villuna
